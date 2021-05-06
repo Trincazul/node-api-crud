@@ -48,7 +48,14 @@ const userRoutes = (app) => {
             }))
 
             req.status(200).send('OK')
-        })    
+        })
+        .delete((req, res) => {
+            const users =  getUsers()
+
+            saveUser(users.filter(users => user.id !== req.params.id))
+
+            res.status(200).send('OK')
+        })   
 }       
 
 module.exports = userRoutes
