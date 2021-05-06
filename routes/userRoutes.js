@@ -1,6 +1,6 @@
 const { json } = require('express');
 const fs = require('fs');
-const { join } = fs;
+const { join } = require('path');
 
 
 const filepath = join(__dirname, 'users.json');
