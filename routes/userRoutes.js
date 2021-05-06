@@ -32,8 +32,23 @@ const userRoutes = (app) => {
             users.push(req.body)
             saveUser(users)
 
-            res.send(201).send('OK')
+            res.status(201).send('OK')
         })
-}
+        .put((req, res) => {
+            const users =  getUsers()
+
+            saveUser(users.map(user => {
+                if (user.id === req.params.id) {
+                    return {
+                        ...user,
+                        ...req.body
+                    }
+                }   
+                return user     
+            }))
+
+            req.status(200).send('OK')
+        })    
+}       
 
 module.exports = userRoutes
